@@ -1,0 +1,462 @@
+# =============================================================================
+# 293 PINEY BLUFF — CONTENT FILE
+# =============================================================================
+#
+# This is the only file you regularly edit. It controls everything visible
+# on the site: building names, descriptions, walkthroughs, system categories.
+#
+# RULES OF THE FILE:
+#   1. Indentation matters. Use 2 spaces for each level. NEVER tabs.
+#   2. Every walkthrough has the same five fields:
+#        title, location, system, video, description
+#   3. If you don't have a video URL yet, leave it as: video: ""
+#      The QR code will still work but show "video coming soon."
+#   4. After saving any change, the website rebuilds itself within ~2 minutes.
+#
+# IF SOMETHING BREAKS:
+#   GitHub keeps every previous version. See MAINTENANCE.md for how to roll back.
+#
+# =============================================================================
+
+site:
+  title: "293 Piney Bluff"
+  tagline: "Operations and systems reference for the farm."
+  owner: "Wesley Shawn Conwell, M.D."
+  signature: "wsc"
+
+# -----------------------------------------------------------------------------
+# SYSTEMS — the dropdown menu categories
+# -----------------------------------------------------------------------------
+systems:
+  - id: electrical
+    name: "Electrical"
+    icon: "bolt"
+    description: "Three independent service entries, panels, and circuits across the property."
+
+  - id: solar
+    name: "Solar & battery"
+    icon: "sun"
+    description: "SolarEdge SHP3 inverter, EcoFlow battery storage, and the household microgrid."
+
+  - id: climate
+    name: "Climate / geothermal"
+    icon: "thermometer"
+    description: "Eight-ton geothermal stack, three compressors, propane backup."
+
+  - id: domestic-water
+    name: "Domestic water"
+    icon: "drop"
+    description: "House well, plumbing, water heaters, and household fixtures."
+
+  - id: livestock-water
+    name: "Livestock water"
+    icon: "drop"
+    description: "Barn well, troughs, tank heaters, freeze protection."
+
+  - id: irrigation
+    name: "Irrigation"
+    icon: "sprinkler"
+    description: "Front-yard well, hand-pump backup, sprinkler zones."
+
+  - id: network
+    name: "Network"
+    icon: "wifi"
+    description: "Peplink router, UniFi switches, UBB shop bridge, Starlink and LTE."
+
+  - id: livestock
+    name: "Livestock"
+    icon: "cow"
+    description: "Cattle operations, hay rotation, tack, medical, records."
+
+  - id: equipment
+    name: "Equipment"
+    icon: "tractor"
+    description: "F-250, tractor, implements, fuel storage."
+
+  - id: structures
+    name: "Structures"
+    icon: "house"
+    description: "House, shop, barn, run-in, equipment shed, and the brush-burn area."
+
+# -----------------------------------------------------------------------------
+# LOCATIONS — every clickable point on the map
+# -----------------------------------------------------------------------------
+# Each location has:
+#   id, name, type (building | well | infrastructure), description
+#   coordinates (x, y as percentage of the satellite image)
+#   walkthroughs (the QR-coded videos)
+# -----------------------------------------------------------------------------
+
+locations:
+
+  # ---- BUILDINGS (5) ----
+
+  - id: house
+    name: "House"
+    type: building
+    coordinates: { x: 32, y: 78 }
+    description: "5,800 sq ft. Cathedral pine ceiling, salvaged hand-hewn beams, stained glass from an Aiken County church."
+    walkthroughs:
+      - title: "Main breaker panel"
+        location: "Utility room, north wall behind door"
+        system: electrical
+        video: ""
+        description: "Locating the main panel and identifying labeled circuits."
+
+      - title: "Whole-house surge protector"
+        location: "Utility room, right of main panel"
+        system: electrical
+        video: ""
+        description: "What it is, where it sits, and when it needs replacement."
+
+      - title: "Geothermal compressor stack — controls"
+        location: "Mechanical room, southeast corner"
+        system: climate
+        video: ""
+        description: "The three-compressor stack, thermostat zones, and what to do when a stage faults."
+
+      - title: "Geothermal thermostat"
+        location: "Hallway by master bedroom"
+        system: climate
+        video: ""
+        description: "Daily-use settings and seasonal changeover."
+
+      - title: "Desuperheater valve & isolation"
+        location: "Mechanical room, above primary tank"
+        system: climate
+        video: ""
+        description: "How the geothermal preheats the water heaters, and how to isolate it for service."
+
+      - title: "Primary water heater (80gal Bradford White)"
+        location: "Mechanical room, south wall"
+        system: domestic-water
+        video: ""
+        description: "Tank specs, anode rod schedule, and the daisy-chain to the secondary."
+
+      - title: "Secondary water heater (60gal)"
+        location: "Mechanical room, daisy-chained from primary"
+        system: domestic-water
+        video: ""
+        description: "Why two tanks; how to diagnose temperature loss."
+
+      - title: "Network rack & CloudKey"
+        location: "Office closet"
+        system: network
+        video: ""
+        description: "Where the brain lives. Power-cycle order if everything goes dark."
+
+      - title: "Irrigation controller & valves"
+        location: "Garage corner"
+        system: irrigation
+        video: ""
+        description: "Zone map, seasonal schedule, manual override."
+
+  - id: shop
+    name: "Shop"
+    type: building
+    coordinates: { x: 30, y: 88 }
+    description: "Passive-cooled, vaulted vented ceiling. Solar inverter and battery storage. Designed and built by Shawn."
+    walkthroughs:
+      - title: "SolarEdge SHP3 inverter — front panel"
+        location: "North wall, eye level"
+        system: solar
+        video: ""
+        description: "Reading the display, identifying fault codes, when to call the installer."
+
+      - title: "SolarEdge — DC disconnect"
+        location: "Below the inverter"
+        system: solar
+        video: ""
+        description: "Emergency shutoff procedure for the solar array."
+
+      - title: "EcoFlow Delta Pro Ultra battery bank"
+        location: "Floor, east wall"
+        system: solar
+        video: ""
+        description: "Battery capacity, charge state, expansion slots."
+
+      - title: "120W PoE switch"
+        location: "Network shelf, west wall"
+        system: network
+        video: ""
+        description: "What plugs in here, how to identify a port, what the lights mean."
+
+      - title: "UBB house bridge"
+        location: "Network shelf, antenna oriented to house"
+        system: network
+        video: ""
+        description: "The wireless link to the house; what to do if it drops."
+
+      - title: "Air compressor"
+        location: "Southwest corner"
+        system: equipment
+        video: ""
+        description: "Tank drain schedule, oil level, regulator settings."
+
+  - id: shed
+    name: "Equipment shed"
+    type: building
+    coordinates: { x: 56, y: 84 }
+    description: "Farm equipment and fuel storage."
+    walkthroughs:
+      - title: "F-250 6.7L diesel — service log"
+        location: "Driver-side door pocket"
+        system: equipment
+        video: ""
+        description: "Where the maintenance log lives and how to read it."
+
+      - title: "Tractor — service log and hour meter"
+        location: "In cab, console"
+        system: equipment
+        video: ""
+        description: "Reading hours, oil change interval, hydraulic fluid check."
+
+      - title: "Implements — bush hog, box blade, post hole"
+        location: "South bay, hung on rack"
+        system: equipment
+        video: ""
+        description: "Hookup procedure and PTO safety."
+
+      - title: "Diesel storage tank"
+        location: "Fuel cabinet, north wall"
+        system: equipment
+        video: ""
+        description: "Fill schedule, pump operation, water-removal protocol."
+
+  - id: barn
+    name: "Barn"
+    type: building
+    coordinates: { x: 65, y: 28 }
+    description: "Cattle operations and hay storage. Independent well and electrical service."
+    walkthroughs:
+      - title: "Livestock water heater"
+        location: "East wall, near gate"
+        system: livestock-water
+        video: ""
+        description: "Winter operation and freeze prevention."
+
+      - title: "Hay storage and rotation protocol"
+        location: "Loft entry"
+        system: livestock
+        video: ""
+        description: "How hay gets stacked, rotated, and what to watch for."
+
+      - title: "Tack & medical supplies"
+        location: "Tack room, north wall"
+        system: livestock
+        video: ""
+        description: "Inventory, where vet supplies live, expiration tracking."
+
+      - title: "Cattle records — file location"
+        location: "Tack room, top shelf"
+        system: livestock
+        video: ""
+        description: "Where the herd records live and how to read them."
+
+  - id: runin
+    name: "Run-in shelter"
+    type: building
+    coordinates: { x: 78, y: 86 }
+    description: "Three-sided cattle shelter with water trough, tank heater, and lighting."
+    walkthroughs:
+      - title: "Tank heater & freeze protection"
+        location: "East wall, above trough"
+        system: livestock-water
+        video: ""
+        description: "How the tank heater works and what to do if the trough freezes."
+
+      - title: "Lighting circuit"
+        location: "South post, switch at entrance"
+        system: electrical
+        video: ""
+        description: "Light operation and the circuit it shares."
+
+      - title: "Water trough plumbing & isolation"
+        location: "Behind trough, north corner"
+        system: livestock-water
+        video: ""
+        description: "Supply line, shutoff, and seasonal disconnect."
+
+  # ---- WELLS (3) ----
+
+  - id: well-house
+    name: "House well"
+    type: well
+    coordinates: { x: 50, y: 76 }
+    description: "Domestic water source. Pressure tank and conditioning located at the house."
+    walkthroughs:
+      - title: "Well pump (SSWP soft starter)"
+        location: "Below ground, well casing access"
+        system: domestic-water
+        video: ""
+        description: "How the soft starter works; what to do if the pump won't run."
+
+      - title: "Well casing & ground bond inspection"
+        location: "At surface, southeast face"
+        system: electrical
+        video: ""
+        description: "Annual inspection: stray voltage, neutral integrity."
+
+  - id: well-irr
+    name: "Irrigation well"
+    type: well
+    coordinates: { x: 38, y: 64 }
+    description: "Front-yard well with hand-pump backup. Pressure tank lives at the house."
+    walkthroughs:
+      - title: "Hand pump operation (power-out backup)"
+        location: "Front yard, white pump stand"
+        system: irrigation
+        video: ""
+        description: "How to draw water by hand when the grid is down. Priming, stroke, output rate."
+
+      - title: "Well bore & casing access"
+        location: "Below the pump stand"
+        system: irrigation
+        video: ""
+        description: "Accessing the bore for service or testing."
+
+      - title: "Sprinkler valves & zone map"
+        location: "At the house, garage corner"
+        system: irrigation
+        video: ""
+        description: "Zone numbering, manual valve operation, seasonal blowout."
+
+  - id: well-barn
+    name: "Barn well"
+    type: well
+    coordinates: { x: 70, y: 32 }
+    description: "Livestock water source for the barn and run-in shelter."
+    walkthroughs:
+      - title: "Well pump & pressure switch"
+        location: "Well head, southwest of barn"
+        system: livestock-water
+        video: ""
+        description: "Pump operation and pressure switch adjustment."
+
+      - title: "Pressure tank"
+        location: "Inside barn, east wall"
+        system: livestock-water
+        video: ""
+        description: "Tank precharge, replacement signs."
+
+      - title: "Freeze protection & winter shutoff"
+        location: "Pressure tank cabinet"
+        system: livestock-water
+        video: ""
+        description: "Heat tape, insulation, the procedure if a hard freeze hits."
+
+  # ---- OUTDOOR INFRASTRUCTURE (7) ----
+
+  - id: elec-house
+    name: "House electrical service"
+    type: infrastructure
+    coordinates: { x: 38, y: 81 }
+    description: "Power entry, meter, and main disconnect. Sheltered."
+    walkthroughs:
+      - title: "Service entry & meter"
+        location: "SE side of house, under shelter"
+        system: electrical
+        video: ""
+        description: "Where the power enters, meter location, what the lineman needs to know."
+
+      - title: "Main disconnect"
+        location: "Adjacent to meter"
+        system: electrical
+        video: ""
+        description: "Emergency shutoff for the entire house."
+
+  - id: elec-shop
+    name: "Shop electrical service"
+    type: infrastructure
+    coordinates: { x: 36, y: 90 }
+    description: "Independent service for the shop. Sheltered."
+    walkthroughs:
+      - title: "Service entry & meter"
+        location: "SE side of shop, under shelter"
+        system: electrical
+        video: ""
+        description: "Independent meter; what the shop runs without the house."
+
+      - title: "Main disconnect"
+        location: "Adjacent to meter"
+        system: electrical
+        video: ""
+        description: "Emergency shutoff for the shop."
+
+  - id: elec-barn
+    name: "Barn electrical service"
+    type: infrastructure
+    coordinates: { x: 71, y: 32 }
+    description: "Independent service for the barn. Exposed (no shelter)."
+    walkthroughs:
+      - title: "Service entry & meter"
+        location: "SE side of barn, exposed"
+        system: electrical
+        video: ""
+        description: "Where to find it, what to do in weather."
+
+      - title: "Main disconnect"
+        location: "Adjacent to meter, weatherproof box"
+        system: electrical
+        video: ""
+        description: "Emergency shutoff for the barn."
+
+  - id: propane
+    name: "Propane tank"
+    type: infrastructure
+    coordinates: { x: 42, y: 83 }
+    description: "Bulk propane supply. Under tree canopy at SE corner of the house."
+    walkthroughs:
+      - title: "Tank shutoff & regulator"
+        location: "SE corner of house, under canopy"
+        system: climate
+        video: ""
+        description: "Emergency shutoff procedure and how the regulator feeds the house."
+
+      - title: "Fill port location for delivery"
+        location: "Tank head, road-facing side"
+        system: climate
+        video: ""
+        description: "What the propane delivery driver needs to find."
+
+  - id: septic
+    name: "Septic system"
+    type: infrastructure
+    coordinates: { x: 60, y: 92 }
+    description: "Tank and drain field. SE downslope toward the swamp."
+    walkthroughs:
+      - title: "Septic tank access lids"
+        location: "SE downslope, marked posts"
+        system: domestic-water
+        video: ""
+        description: "Where the lids are; how often to pump; what to call about."
+
+      - title: "Drain field extent & no-build zone"
+        location: "Downslope of tank toward swamp"
+        system: domestic-water
+        video: ""
+        description: "Where you can't park, plant, or build."
+
+  - id: brush-hay
+    name: "Brush dump & hay stack"
+    type: infrastructure
+    coordinates: { x: 18, y: 12 }
+    description: "NW corner clearing. Brush burning area co-located with hay storage."
+    walkthroughs:
+      - title: "Brush burn protocol & wind rules"
+        location: "On site, NW clearing"
+        system: structures
+        video: ""
+        description: "When you can burn, when you can't, and the SC notification number."
+
+      - title: "Hay rotation & storage"
+        location: "NW clearing, west side"
+        system: livestock
+        video: ""
+        description: "How hay gets stacked, covered, and rotated."
+
+      - title: "Fire safety & water access in emergency"
+        location: "NW clearing entrance"
+        system: structures
+        video: ""
+        description: "What to do if a brush fire gets away."

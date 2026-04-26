@@ -1,0 +1,344 @@
+/* =============================================================================
+   293 PINEY BLUFF — STYLESHEET
+   Earth-tone, considered, quiet. The site's job is to be useful, not loud.
+   ========================================================================== */
+
+:root {
+  --color-bg:        #F7F4ED;   /* warm off-white, like aged paper */
+  --color-surface:   #FFFFFF;
+  --color-surface-2: #EFEAE0;   /* cards */
+  --color-text:      #2A2823;   /* deep brown-black */
+  --color-text-soft: #6B655C;
+  --color-text-faint:#9A9388;
+  --color-border:    #D9D2C4;
+  --color-accent:    #8B5A2B;   /* burnt sienna — TC's earth */
+  --color-accent-2:  #5A6B3C;   /* moss green */
+  --color-water:     #4A6B85;
+  --color-fire:      #A4452A;
+  --color-private:   #6B5A85;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius: 4px;
+  --radius-lg: 8px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- MASTHEAD ---- */
+
+.masthead {
+  border-bottom: 1px solid var(--color-border);
+  padding: 2.5rem 1.25rem 2rem;
+  background: var(--color-surface);
+}
+.masthead-inner {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.masthead h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 500;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.01em;
+}
+.masthead p {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
+}
+
+/* ---- LAYOUT ---- */
+
+main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 4rem;
+}
+
+.section {
+  margin-top: 2.5rem;
+}
+.section-header {
+  margin-bottom: 1rem;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem;
+}
+.section-header p {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 0.92rem;
+}
+
+/* ---- SYSTEMS GRID ---- */
+
+.systems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.6rem;
+}
+.system-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition: border-color 150ms, transform 150ms;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.system-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+.system-card .icon {
+  width: 22px;
+  height: 22px;
+  color: var(--color-accent);
+}
+.system-card .name {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+.system-card .count {
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+}
+
+/* ---- MAP ---- */
+
+.map-container {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-lg);
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.map-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+#map-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+#map-pins {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  border: 2px solid white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  transition: transform 120ms, box-shadow 120ms;
+}
+.pin:hover { transform: translate(-50%, -50%) scale(1.15); }
+.pin.active { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+.pin.building { background: var(--color-accent); }
+.pin.well { background: var(--color-water); }
+.pin.infrastructure { background: var(--color-accent-2); }
+
+/* ---- INFO PANEL ---- */
+
+.info-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  min-height: 90px;
+}
+.info-empty {
+  color: var(--color-text-faint);
+  margin: 0;
+  font-size: 0.92rem;
+}
+.info-panel h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem;
+}
+.info-panel .info-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--color-surface-2);
+  color: var(--color-text-soft);
+  margin-bottom: 0.6rem;
+}
+.info-panel .info-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-soft);
+  margin: 0 0 0.5rem;
+}
+.info-panel .info-count {
+  font-size: 0.8rem;
+  color: var(--color-text-faint);
+  font-style: italic;
+  margin: 0 0 0.5rem;
+}
+
+.walkthroughs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.walkthroughs li {
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--color-border);
+}
+.walkthroughs li:first-child { border-top: none; padding-top: 0.3rem; }
+.walkthroughs .wt-title {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.walkthroughs .wt-system {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--color-surface-2);
+  color: var(--color-text-soft);
+  margin-left: 0.4rem;
+  font-weight: 400;
+}
+.walkthroughs .wt-loc {
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
+  margin-top: 0.15rem;
+}
+.walkthroughs .wt-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+  margin-top: 0.2rem;
+}
+.walkthroughs .wt-pending {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--color-fire);
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+/* ---- LOCK CARD ---- */
+
+.lock-card {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-text-soft);
+}
+.lock-card svg { width: 24px; height: 24px; flex-shrink: 0; color: var(--color-private); }
+.lock-card h3 { margin: 0 0 0.15rem; font-size: 1rem; font-weight: 500; color: var(--color-text); }
+.lock-card p { margin: 0; font-size: 0.85rem; }
+
+/* ---- MODAL ---- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 100;
+}
+.modal[aria-hidden="false"] { display: block; }
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 18, 14, 0.55);
+}
+.modal-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.5rem 1.25rem;
+  width: min(92vw, 640px);
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 40px rgba(20,18,14,0.3);
+}
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--color-text-soft);
+  line-height: 1;
+}
+.modal-close:hover { color: var(--color-text); }
+.modal-panel h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem;
+}
+.modal-panel .modal-desc {
+  color: var(--color-text-soft);
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+}
+
+/* ---- FOOTER ---- */
+
+footer {
+  border-top: 1px solid var(--color-border);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-text-faint);
+}
+
+/* ---- MOBILE ---- */
+
+@media (max-width: 600px) {
+  .masthead { padding: 1.75rem 1rem 1.5rem; }
+  main { padding: 0.5rem 1rem 3rem; }
+  .systems-grid { grid-template-columns: repeat(2, 1fr); }
+  .pin { width: 22px; height: 22px; font-size: 10px; }
+}

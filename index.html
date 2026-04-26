@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>293 Piney Bluff</title>
+<meta name="description" content="Operations and systems reference for 293 Piney Bluff.">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1 id="site-title">293 Piney Bluff</h1>
+    <p id="site-tagline">Operations and systems reference for the farm.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- SYSTEMS MENU -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Find by system</h2>
+      <p>For when you know what you're working on.</p>
+    </div>
+    <div id="systems-grid" class="systems-grid">
+      <!-- populated by app.js -->
+    </div>
+  </section>
+
+  <!-- PROPERTY MAP -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Find by location</h2>
+      <p>For when you're standing somewhere on the property.</p>
+    </div>
+    <div class="map-container">
+      <div class="map-wrap">
+        <img id="map-image" src="assets/property.png" alt="Aerial view of 293 Piney Bluff" />
+        <div id="map-pins"><!-- populated by app.js --></div>
+      </div>
+    </div>
+    <div id="location-info" class="info-panel">
+      <p class="info-empty">Tap a building, well, or infrastructure pin to see what's documented there.</p>
+    </div>
+  </section>
+
+  <!-- PRIVATE DOCUMENTS -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Private documents</h2>
+      <p>Wills, accounts, financial and animal records. Login required.</p>
+    </div>
+    <div class="lock-card">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <div>
+        <h3>Locked area</h3>
+        <p>Available after the private layer is online.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>293 Piney Bluff — wsc</p>
+</footer>
+
+<!-- MODAL: shows when a system card is clicked -->
+<div id="system-modal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-panel">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
